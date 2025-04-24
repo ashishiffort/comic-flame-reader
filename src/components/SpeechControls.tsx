@@ -16,18 +16,19 @@ export const SpeechControls = ({ isSpeaking, progress, onPlayPause }: SpeechCont
         variant="ghost"
         size="icon"
         onClick={onPlayPause}
-        className="relative z-10 h-12 w-12"
+        className="relative z-10 h-16 w-16 rounded-full bg-blue-500 hover:bg-blue-600 text-white"
       >
-        {isSpeaking ? <CirclePause /> : <CirclePlay />}
+        {isSpeaking ? 
+          <CirclePause className="h-8 w-8" /> : 
+          <CirclePlay className="h-8 w-8" />
+        }
       </Button>
       
       <div className="absolute top-0 left-0 w-full h-full -z-0">
-        <div className="relative h-full w-full">
-          <Progress 
-            value={progress} 
-            className="absolute top-0 left-0 w-full h-full rounded-full [transform:rotate(-90deg)]"
-          />
-        </div>
+        <Progress 
+          value={progress} 
+          className="absolute top-0 left-0 w-full h-full rounded-full [transform:rotate(-90deg)] bg-blue-200"
+        />
       </div>
     </div>
   );
