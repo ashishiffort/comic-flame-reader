@@ -1,11 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState } from 'react';
+import ComicViewer from '@/components/ComicViewer';
+import LanguageSelector from '@/components/LanguageSelector';
+import { SpeechControls } from '@/components/SpeechControls';
 
 const Index = () => {
+  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'ar'>('en');
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [progress, setProgress] = useState(0);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gray-900 p-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex justify-between items-center mb-4">
+          <LanguageSelector 
+            currentLanguage={currentLanguage} 
+            onLanguageChange={setCurrentLanguage} 
+          />
+          <SpeechControls 
+            isSpeaking={isSpeaking}
+            progress={progress}
+            onPlayPause={() => setIsSpeaking(!isSpeaking)}
+          />
+        </div>
+        <ComicViewer currentLanguage={currentLanguage} />
       </div>
     </div>
   );
